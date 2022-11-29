@@ -1,27 +1,30 @@
 package com.epam.mjc;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CollectionService {
 
     public List<Integer> filterEvenNumbers(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return list.stream().filter(b -> b % 2 == 0).collect(Collectors.toList());
     }
 
     public List<String> toUpperCaseCollection(List<String> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return list.stream().map(String::toUpperCase).collect(Collectors.toList());
     }
 
     public Optional<Integer> findMax(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return list.stream().max(Comparator.comparing(Integer::valueOf));
     }
 
     public Optional<Integer> findMin(List<List<Integer>> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return list.stream().flatMap(List::stream).collect(Collectors.toList()).stream().min(Comparator.comparing(Integer::valueOf));
     }
 
     public Integer sum(List<Integer> list) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return list.stream().reduce(0, Integer::sum);
     }
 }
